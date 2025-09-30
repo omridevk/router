@@ -1,4 +1,7 @@
-import { createRouter as createReactRouter } from '@tanstack/react-router'
+import {
+  createRouter as createReactRouter,
+  rewriteBasepath,
+} from '@tanstack/react-router'
 
 import { routeTree } from './routeTree.gen'
 
@@ -8,6 +11,7 @@ export function createRouter() {
     context: {
       head: '',
     },
+    rewrite: rewriteBasepath({ basepath: 'my-app' }),
     defaultPreload: 'intent',
     scrollRestoration: true,
   })

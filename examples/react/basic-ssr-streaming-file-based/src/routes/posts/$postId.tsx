@@ -1,4 +1,9 @@
-import { Await, createFileRoute, notFound } from '@tanstack/react-router'
+import {
+  Await,
+  createFileRoute,
+  notFound,
+  redirect,
+} from '@tanstack/react-router'
 import * as React from 'react'
 import type { PostType } from './route'
 
@@ -41,6 +46,9 @@ export const Route = createFileRoute('/posts/$postId')({
       post,
       commentsPromise: commentsPromise,
     }
+  },
+  beforeLoad: () => {
+    throw redirect({to: '/error'})
   },
   wrapInSuspense: true,
   errorComponent: ({ error }) => {
